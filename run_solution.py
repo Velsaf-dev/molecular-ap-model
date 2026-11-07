@@ -23,31 +23,71 @@ if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
 
-def check_environment(test_path):
+def check_environment(test_path, train_path=None, retrain=False):
     os.makedirs("submissions", exist_ok=True)
     os.makedirs("data", exist_ok=True)
+    os.makedirs("data/raw", exist_ok=True)
+    os.makedirs("data/processed", exist_ok=True)
+
     if not os.path.exists(test_path):
-        print(f"Error: test file not found at {test_path}")
+        print(f"Error: test file not found at '{test_path}'")
+        sys.exit(1)
+
+    if retrain and (not train_path or not os.path.exists(train_path)):
+        print(f"Error: training file required for --retrain not found at '{train_path}'")
         sys.exit(1)
 
 
-def run(test_path="data/raw/test.csv", output_path="submissions/submission.csv"):
+def retrain_pipeline(train_path, models_dir="models"):
+    print("[RETRAIN] Preparing training dataset and running 5-Fold Bemis-Murcko training...")
+    df_raw = pd.read_csv(train_path)
+
+    # Standardize SMILES if not present
+    from src.preprocessing.standardize import MoleculeStandardizer
+    standardizer = MoleculeStandardizer()
+
+    smiles_col = "SMILES" if "SMILES" in df_raw.columns else "smiles"
+    target_col = "SI" if "SI" in df_raw.columns else ("SI VACV" if "SI VACV" in df_raw.columns else None)
+
+    clean_smiles_list = []
+    for s in df_raw[smiles_col]:
+        can_s, _ = standardizer.standardize_smiles(s)
+        clean_smiles_list.append(can_s if can_s else str(s).strip())
+
+    df_clean = df_raw.copy()
+    df_clean["clean_smiles"] = clean_smiles_list
+    if target_col and target_col != "SI":
+        df_clean["SI"] = df_clean[target_col]
+
+    clean_train_path = "data/processed/train_clean.csv"
+    df_clean.to_csv(clean_train_path, index=False)
+
+    from src.models.train_boosters import train_advanced_ensemble
+    train_advanced_ensemble(train_clean_path=clean_train_path, models_dir=models_dir)
+    print("[RETRAIN] Model ensemble successfully trained and saved to models/\n")
+
+
+def run(test_path="data/raw/test.csv", train_path="data/raw/train_v2.csv", output_path="submissions/submission.csv", retrain=False):
     t0 = time.time()
     print("=" * 65)
     print("Anti7 Pipeline: Pure De Novo ML Selectivity Index Prediction")
     print("=" * 65)
 
-    check_environment(test_path)
+    check_environment(test_path, train_path=train_path, retrain=retrain)
+
+    # 0. Optional model retraining
+    if retrain:
+        retrain_pipeline(train_path)
 
     # 1. Loading datasets
     print("[1/4] Loading test dataset...")
     df_test = pd.read_csv(test_path)
-    train_path = "data/raw/train_v2.csv"
-    if os.path.exists(train_path):
+    if train_path and os.path.exists(train_path):
         df_train = pd.read_csv(train_path)
-        print(f"      Train compounds: {len(df_train)} | Test molecules: {len(df_test)}")
+        print(f"      Train set: '{train_path}' ({len(df_train)} compounds)")
+        print(f"      Test set:  '{test_path}' ({len(df_test)} molecules)")
     else:
-        print(f"      Test molecules: {len(df_test)}")
+        print(f"      Test set:  '{test_path}' ({len(df_test)} molecules)")
     print("      Input mode: STRICTLY SMILES (Zero DOI, Zero test leakage)")
 
     # 2. Features & Scaffold Cross-Validation
@@ -82,14 +122,25 @@ def run(test_path="data/raw/test.csv", output_path="submissions/submission.csv")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run Anti7 Pure ML Inference Pipeline")
-    parser.add_argument("--test", type=str, default="data/raw/test.csv", help="Path to test CSV")
-    parser.add_argument("--output", type=str, default="submissions/submission.csv", help="Path to output CSV")
+    parser = argparse.ArgumentParser(
+        description="Anti7 Pure De Novo ML Inference Pipeline for Poxvirus SI Prediction",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument("--test", "-t", type=str, default="data/raw/test.csv", help="Path to test CSV file")
+    parser.add_argument("--train", "-tr", type=str, default="data/raw/train_v2.csv", help="Path to train CSV file")
+    parser.add_argument("--output", "-o", type=str, default="submissions/submission.csv", help="Path to output submission CSV")
+    parser.add_argument("--retrain", action="store_true", help="Retrain 5-fold scaffold ensemble before inference")
     args, unknown = parser.parse_known_args()
 
-    # Support single positional argument if passed as: python run_solution.py path/to/test.csv
+    # Smart positional arguments fallback:
+    # python run_solution.py [test_path] [output_path]
     test_file = args.test
-    if unknown and len(unknown) > 0 and not unknown[0].startswith("-"):
-        test_file = unknown[0]
+    output_file = args.output
+    if unknown:
+        positional = [u for u in unknown if not u.startswith("-")]
+        if len(positional) >= 1:
+            test_file = positional[0]
+        if len(positional) >= 2:
+            output_file = positional[1]
 
-    run(test_path=test_file, output_path=args.output)
+    run(test_path=test_file, train_path=args.train, output_path=output_file, retrain=args.retrain)

@@ -77,10 +77,18 @@ $$\text{SI} = \frac{\text{CC}_{50}}{\text{IC}_{50}}$$
 # 1. Установка зависимостей
 pip install -r requirements.txt
 
-# 2. Запуск воспроизведения финального решения
+# 2. Стандартный запуск (воспроизведение официального сабмита 72.6k):
 python run_solution.py
+
+# 3. Гибкий запуск с указанием произвольных путей:
+python run_solution.py --test path/to/custom_test.csv --output submissions/result.csv
+# или короткими позиционными аргументами:
+python run_solution.py custom_test.csv submissions/result.csv
+
+# 4. Опциональное полное переобучение ансамбля на новом train:
+python run_solution.py --train path/to/train.csv --test path/to/test.csv --retrain
 ```
-*(Скрипт выполняется за доли секунды и сохраняет готовый сабмит в `submissions/submission.csv`).*
+*(При стандартном запуске скрипт выполняется за доли секунды и сохраняет готовый сабмит в `submissions/submission.csv`).*
 
 ### В Docker-контейнере:
 ```bash
