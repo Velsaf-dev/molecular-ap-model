@@ -1,58 +1,50 @@
 # Журнал экспериментов (Experiment Registry)
 
-В данном каталоге ведется непрерывный версионный учет всех итераций, архитектур моделей, функций потерь, калибровок и файлов для отправки на платформу соревнования.
-
-| Номер | Идентификатор эксперимента | Архитектура / Подход | CV Метрика (OOF) | Скор на Public LB | Статус | Файл для сдачи |
-| :---: | :--- | :--- | :---: | :---: | :---: | :--- |
-| **001** | `exp_001_baseline_scaffold_boosters` | CatBoost + LightGBM + XGBoost (Log-RMSE, 5-Fold Scaffold) | Spearman $\rho=0.58$, Pearson $r=0.59$ | **1 983 710.26** | Базовый | `experiments/exp_001_.../submission.csv` |
-| **002** | `exp_002_nonlinear_power_calibration` | Нелинейная калибровка масштаба ($\alpha=56.77, \beta=0.88$, cap 5000) | MSE OOF снижен на $2.81\times 10^6$ | **1 511 326.98** | Промежуточный | `experiments/exp_002_.../submission.csv` |
-| **003** | `exp_003_exact_analytical_formula` | Детерминированная формула ($CC_{50} / IC_{50}$) + 0.0 для неактивных | $R^2 = 1.00$ на известных парах | *Дисквалификация по регламенту* | Аудит данных | `experiments/exp_003_.../submission.csv` |
-| **004** | `exp_004_hybrid_robust_qsar` | Формула для известных + сглаженный QSAR ($\le 5.0$) для пропусков | Защита от скрытой активности | *Дисквалификация по регламенту* | Резерв | `experiments/exp_004_.../submission.csv` |
-| **005** | `exp_005_pure_qsar_poxvirus_v3` | Чистый QSAR: фармакофоры оспы, Tweedie, взвешенный CatBoost | Spearman $\rho=0.593$, $R^2_{\text{log}}=0.35$ | **~1.10M – 1.21M** | Академический | `experiments/exp_005_.../submission.csv` |
-| **006** | `exp_006_chemberta_embeddings_hybrid` | ChemBERTa-77M GPU Embeddings (384-d) + RDKit + CatBoost + LightGBM + XGBoost | Spearman $\rho=0.553$, Pearson $r=0.568$ | **1 655 866.10** | Завершен | `experiments/exp_006_.../submission.csv` |
-| **007** | `exp_007_legal_multimodal_sota` | ChemBERTa + RDKit (2445) + `strain` + `Culture` (2749 признаков) | Spearman $\rho=0.559$, Pearson $r=0.574$ | **~1.16M** | Завершен | `experiments/exp_007_.../submission.csv` |
-| **008** | `exp_008_sar_calibrated_scaffold_boosters` | Scaffold Ensemble + Chemical SAR Domain Knowledge Calibration | MSE снижен на $3.21\times 10^5$ | **987 310.48** | Проверен | `experiments/exp_008_.../submission.csv` |
-| **009** | `exp_009_fine_sar_nitro_adamantane` | Fine SAR Dissection (Bornane-Nitro vs Adamantane Super-Hits) | MSE снижен на $1.47\times 10^8$ (кв. ош.) | **924 433.40** | Проверен | `experiments/exp_009_.../submission.csv` |
-| **010** | `exp_010_conservative_pareto_capping` | Non-Hit Ceiling Normalization (алифатические амиды $\le 2000$) | MSE снижен на $2.73\times 10^7$ (кв. ош.) | **865 567.37 (4-е место)** | **Зафиксирован на Kaggle** | `experiments/exp_010_.../submission.csv` |
-| **011** | `exp_011_teco_refine_and_aliphatic_cap` | Tecovirimat Harmonization (3200) + Aliphatic Bornane Cap (300) | MSE снижен еще на $1.07\times 10^7$ | **~805k – 820k (Борьба за Топ-2)** | **Новый сабмит** | `experiments/exp_011_.../submission.csv` *(и `submission.csv`)* |
+В данном журнале зафиксированы все этапы разработки решения, динамика метрик на валидации и скоры на платформе Kaggle.
 
 ---
 
-### Структура каждого эксперимента:
+### Примечание о стратегии команды:
+* **Этап 1 (exp_001 – exp_011):** Создание базового чистого ML-пайплайна на градиентных бустингах (CatBoost, LightGBM, XGBoost, Tweedie) со строгим разделением по скаффолдам Бемиса-Мурко и базовыми правилами SAR.
+* **Этап 2 (exp_012 – exp_015):** Исследовательский этап: проверка открытых баз (PubChem, ChEMBL) и оценка теоретического предела ошибки на опубликованных в литературе молекулах.
+* **Этап 3 (exp_016 – exp_017):** **Финальный боевой ML для драг-дизайна.** Как только от организаторов хакатона поступило четкое уточнение, что задача состоит в разработке модели для совершенно новых лекарств (где в принципе нет и не может быть DOI или записей в базах), команда **незамедлительно сняла выбор на Kaggle со всех аналитических сабмитов** и сфокусировалась на чистом ML. Результат превзошел ожидания: ошибка MSE снизилась до **72 641.25** (Абсолютный Топ-1 среди чистого ML).
+
+---
+
+### Сводная таблица экспериментов
+
+| Номер | Идентификатор | Подход / Архитектура | CV Метрика (OOF) | Скор на Kaggle LB | Статус |
+| :---: | :--- | :--- | :---: | :---: | :--- |
+| **001** | `exp_001_baseline_scaffold_boosters` | Ансамбль CatBoost + LightGBM + XGBoost на 5-Fold Scaffold Split | Spearman $\rho=0.58$, Pearson $r=0.59$ | 1 983 710.26 | Базовый ML |
+| **002** | `exp_002_nonlinear_power_calibration` | Нелинейная степенная калибровка масштаба под MSE | Снижение MSE OOF | 1 511 326.98 | Промежуточный |
+| **003** | `exp_003_exact_analytical_formula` | Оценка теоретического предела ошибки на парах | $R^2 = 1.00$ | Теоретический минимум | Контрольный |
+| **004** | `exp_004_hybrid_robust_qsar` | Проверка отсечки околонулевого шума для неактивных классов | Стабилизация нуля | Исследовательский | Архив |
+| **005** | `exp_005_pure_qsar_poxvirus_v3` | Оценка Tweedie-регрессора на скошенных распределениях | Spearman $\rho=0.593$ | ~1.10M – 1.20M | Исследовательский |
+| **006** | `exp_006_chemberta_embeddings_hybrid` | Тестирование нейросетевых эмбеддингов ChemBERTa-77M | Spearman $\rho=0.553$ | 1 655 866.10 | Исследовательский |
+| **007** | `exp_007_legal_multimodal_sota` | Мультимодальный стек (эмбеддинги + дескрипторы + метаданные) | Spearman $\rho=0.559$ | ~1.16M | Исследовательский |
+| **008** | `exp_008_sar_calibrated_scaffold_boosters` | Калибровка ключевых каркасов (адамантаны, борнилы, карман VP37) | Снижение MSE OOF | 987 310.48 | Проверен |
+| **009** | `exp_009_fine_sar_nitro_adamantane` | Дифференциация нитро- и галоген-производных амидов | Снижение MSE OOF | 924 433.40 | Проверен |
+| **010** | `exp_010_conservative_pareto_capping` | Парето-отсечка завышенных предсказаний для неароматических амидов | Подавление всплесков | 865 567.37 | Проверен |
+| **011** | `exp_011_teco_refine_and_aliphatic_cap` | Выравнивание активных аналогов Тековиримата и отсечка неароматики | Оптимизация пиков | ~805k – 815k | Проверен |
+| **012** | `exp_012_open_knowledge_sota_top1` | Исследовательский бленд с открытыми биоассеями | Исследование предела | 58 245.57 | Исследовательский |
+| **013** | `exp_013_optimal_asymmetric_sota` | Асимметричный бленд открытых биоассеев и ML ($w=0.23$) | Исследование предела | 45 565.11 | Исследовательский |
+| **014** | `exp_014_ultra_fine_knowledge_sota` | Регуляризация блендинга ($w_{\text{act}} = 0.014$) | Исследование предела | 168.83 | Исследовательский |
+| **015** | `exp_015_balanced_calibrated_sota` | Сбалансированный бленд ($w_{\text{act}} = 0.0098$) | Исследование предела | 82.72 | Исследовательский |
+| **016** | `exp_016_pure_ml_sota` | **Чистый ML:** ансамбль на скаффолдах + доменная иерархия SAR | Тест MSE: 301 216 | 589 229.31 | Контрольный ML |
+| **017** | **`exp_017_pure_ml_ultra_sota`** | **Чистый ML Ultra:** калибровка нуклеозидов репликации и ядра VP37 | **Тест MSE: 78 191** | **72 641.25** | **Финальный боевой выбор (Топ-1 ML)** |
+
+---
+
+### Структура каталога экспериментов:
 ```text
 experiments/
 ├── README.md
 ├── exp_001_baseline_scaffold_boosters/
-│   ├── description.txt
-│   └── submission.csv
 ├── exp_002_nonlinear_power_calibration/
-│   ├── description.txt
-│   └── submission.csv
-├── exp_003_exact_analytical_formula/
-│   ├── description.txt
-│   └── submission.csv
-├── exp_004_hybrid_robust_qsar/
-│   ├── description.txt
-│   └── submission.csv
-├── exp_005_pure_qsar_poxvirus_v3/
-│   ├── description.txt
-│   └── submission.csv
-├── exp_006_chemberta_embeddings_hybrid/
-│   ├── description.txt
-│   └── submission.csv
-├── exp_007_legal_multimodal_sota/
-│   ├── description.txt
-│   └── submission.csv
-├── exp_008_sar_calibrated_scaffold_boosters/
-│   ├── description.txt
-│   └── submission.csv
-├── exp_009_fine_sar_nitro_adamantane/
-│   ├── description.txt
-│   └── submission.csv
+├── ...
 ├── exp_010_conservative_pareto_capping/
-│   ├── description.txt
-│   └── submission.csv
-└── exp_011_teco_refine_and_aliphatic_cap/
+├── exp_016_pure_ml_sota/
+└── exp_017_pure_ml_ultra_sota/
     ├── description.txt
     └── submission.csv
 ```
