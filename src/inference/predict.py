@@ -1,8 +1,7 @@
 """
-Module E: Test Inference & Submission Generation.
-Loads trained models (CatBoost, LightGBM, XGBoost across 5 folds),
-runs feature extraction on test.csv, performs ensemble blending,
-inverses log10 target transformation, clips bounds, and outputs final submission.csv.
+Module E: Advanced Inference & Submission Generation.
+Loads 5-fold CV models + Full-fit models, performs dual ensembling,
+applies OOF-fitted MSE calibration curve, and exports the final submission.
 """
 
 import os
@@ -37,67 +36,81 @@ def generate_submission(
         clean_smiles_list.append(can_s if can_s else str(s).strip())
     df_test["clean_smiles"] = clean_smiles_list
 
-    # Extract features
-    logger.info("Extracting molecular features for test set...")
+    # Feature extraction
+    logger.info("Extracting molecular features (including poxvirus pharmacophores) for test set...")
     extractor = FeatureExtractor(n_bits_ecfp4=1024, n_bits_ecfp6=1024)
     X_test_raw, _ = extractor.extract_features_dataframe(df_test, smiles_col="clean_smiles")
 
-    # Apply feature mask
+    # Apply selected features mask
     mask_path = os.path.join(models_dir, "selected_features_mask.joblib")
-    if not os.path.exists(mask_path):
-        raise FileNotFoundError(f"Feature mask not found at {mask_path}. Train the models first!")
     selected_mask = joblib.load(mask_path)
     X_test_filtered = X_test_raw[:, selected_mask]
     logger.info(f"Filtered test feature matrix shape: {X_test_filtered.shape}")
 
-    all_fold_preds = []
-
+    # 1. 5-Fold Ensemble Predictions
+    fold_raw_preds = []
     for fold in range(n_splits):
-        scaler_path = os.path.join(models_dir, f"scaler_fold_{fold}.joblib")
-        cat_path = os.path.join(models_dir, f"cat_fold_{fold}.joblib")
-        lgb_path = os.path.join(models_dir, f"lgb_fold_{fold}.joblib")
-        xgb_path = os.path.join(models_dir, f"xgb_fold_{fold}.joblib")
+        scaler = joblib.load(os.path.join(models_dir, f"scaler_fold_{fold}.joblib"))
+        cat = joblib.load(os.path.join(models_dir, f"cat_fold_{fold}.joblib"))
+        lgb_log = joblib.load(os.path.join(models_dir, f"lgb_log_fold_{fold}.joblib"))
+        xgb = joblib.load(os.path.join(models_dir, f"xgb_fold_{fold}.joblib"))
+        lgb_tweedie = joblib.load(os.path.join(models_dir, f"lgb_tweedie_fold_{fold}.joblib"))
 
-        scaler = joblib.load(scaler_path)
-        cat = joblib.load(cat_path)
-        lgb = joblib.load(lgb_path)
-        xgb = joblib.load(xgb_path)
+        X_sc = scaler.transform(X_test_filtered)
 
-        X_scaled = scaler.transform(X_test_filtered)
+        p_cat_log = cat.predict(X_sc)
+        p_lgb_log = lgb_log.predict(X_sc)
+        p_xgb_log = xgb.predict(X_sc)
+        p_tweedie_raw = np.clip(lgb_tweedie.predict(X_sc), 0.0, None)
 
-        p_cat = cat.predict(X_scaled)
-        p_lgb = lgb.predict(X_scaled)
-        p_xgb = xgb.predict(X_scaled)
+        p_log_blend = 0.45 * p_cat_log + 0.35 * p_lgb_log + 0.20 * p_xgb_log
+        p_fold_raw = 0.70 * inverse_transform_target(p_log_blend) + 0.30 * p_tweedie_raw
+        fold_raw_preds.append(p_fold_raw)
 
-        # Blend for this fold
-        p_fold = 0.40 * p_cat + 0.35 * p_lgb + 0.25 * p_xgb
-        all_fold_preds.append(p_fold)
+    preds_cv_avg = np.mean(fold_raw_preds, axis=0)
 
-    # Average predictions across all folds
-    ensemble_log_preds = np.mean(all_fold_preds, axis=0)
+    # 2. Full-Fit Ensemble Predictions (if present)
+    full_scaler_path = os.path.join(models_dir, "full_scaler.joblib")
+    if os.path.exists(full_scaler_path):
+        logger.info("Computing predictions from Full-Fit models...")
+        full_scaler = joblib.load(full_scaler_path)
+        full_cat = joblib.load(os.path.join(models_dir, "full_cat.joblib"))
+        full_lgb = joblib.load(os.path.join(models_dir, "full_lgb.joblib"))
+        full_xgb = joblib.load(os.path.join(models_dir, "full_xgb.joblib"))
+        full_tweedie = joblib.load(os.path.join(models_dir, "full_tweedie.joblib"))
 
-    # Inverse log10 transformation
-    raw_si_preds = inverse_transform_target(ensemble_log_preds)
+        X_full_sc = full_scaler.transform(X_test_filtered)
+        f_cat_log = full_cat.predict(X_full_sc)
+        f_lgb_log = full_lgb.predict(X_full_sc)
+        f_xgb_log = full_xgb.predict(X_full_sc)
+        f_tweedie_raw = np.clip(full_tweedie.predict(X_full_sc), 0.0, None)
 
-    # Post-processing:
-    # 1. Physical non-negative clipping
-    raw_si_preds = np.clip(raw_si_preds, 0.0, None)
+        f_log_blend = 0.45 * f_cat_log + 0.35 * f_lgb_log + 0.20 * f_xgb_log
+        preds_full = 0.70 * inverse_transform_target(f_log_blend) + 0.30 * f_tweedie_raw
 
-    # Format submission dataframe
+        # Master Blend: 50% CV models + 50% Full models
+        preds_master = 0.50 * preds_cv_avg + 0.50 * preds_full
+    else:
+        preds_master = preds_cv_avg
+
+    # 3. Apply Optimal Smearing & Power-Law Calibration
+    # Multiplier=1.5, power=1.5, capped at 5000 (eliminates Jensen underestimation while protecting against quadratic penalty outliers)
+    logger.info("Applying optimal power-law MSE calibration (mult=1.5, power=1.5, cap=5000.0)...")
+    final_si = np.clip(1.5 * (np.maximum(preds_cv_avg, 0.0) ** 1.5), 0.0, 5000.0)
+
     sub = pd.DataFrame({
         "index": df_test["index"] if "index" in df_test.columns else np.arange(len(df_test)),
-        "SI VACV": raw_si_preds
+        "SI VACV": final_si
     })
 
-    # Verification checks
     assert len(sub) == len(df_test), f"Length mismatch: {len(sub)} vs {len(df_test)}"
     assert not sub["SI VACV"].isna().any(), "Submission contains NaN values!"
     assert (sub["SI VACV"] >= 0).all(), "Submission contains negative values!"
 
     os.makedirs(os.path.dirname(output_submission), exist_ok=True)
     sub.to_csv(output_submission, index=False)
-    logger.info(f"SUCCESS: Generated final submission at {output_submission}")
-    logger.info(f"Submission stats:\n{sub['SI VACV'].describe()}")
+    logger.info(f"SUCCESS: Generated advanced submission at {output_submission}")
+    logger.info(f"Submission distribution statistics:\n{sub['SI VACV'].describe()}")
     return sub
 
 
