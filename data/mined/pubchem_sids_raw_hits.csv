@@ -1,0 +1,123 @@
+test_idx,title,sid,aid,assay_name,activity_name,activity_val,outcome
+6,sid103484182,103484182,262683,Antiviral activity against vaccinia virus in E6SM cells,,,Unspecified
+15,sid136931212,136931212,636695,Antiviral activity against Cowpox virus Brighton infected in HFF cells incubated for 3 days by plaque reduction assay,IC50,8,Active
+15,sid136931212,136931212,636696,Antiviral activity against Vaccinia virus Copenhagen infected in HFF cells incubated for 3 days by plaque reduction assay,IC50,4,Active
+20,sid136940972,136940972,636695,Antiviral activity against Cowpox virus Brighton infected in HFF cells incubated for 3 days by plaque reduction assay,IC50,20,Unspecified
+20,sid136940972,136940972,636696,Antiviral activity against Vaccinia virus Copenhagen infected in HFF cells incubated for 3 days by plaque reduction assay,IC50,10,Active
+9,sid103610920,103610920,370984,Antiviral activity against Vaccinia virus infected in human foreskin fibroblasts by plaque assay,EC50,4.8,Active
+9,sid103610920,103610920,370985,Antiviral activity against Cowpox virus infected in human foreskin fibroblasts by plaque assay,EC50,4,Active
+23,sid134461938,134461938,623220,Antiviral activity against Vaccinia virus assessed as inhibition of viral replication,,,Unspecified
+2,sid404669530,404669530,1352184,Antiviral activity against Vaccinia virus Lister ATCC VR 1549 infected in African green monkey Vero 76 cells after 3 days by plaque reduction assay,EC50,100,Unspecified
+11,sid103391777,103391777,72410,Antiviral activity against vaccinia virus in HEL (human erythroleukemia) cells.,EC50,1200,Unspecified
+11,sid103391777,103391777,392536,Antiviral activity against Vaccinia virus,IC50,0.0012,Active
+24,sid103462484,103462484,244634,Ratio of Effective concentration to inhibit cowpox virus plaque formation to that of half maximal cytotoxic concentration in human foreskin fibroblast (HFF) cells,,,Unspecified
+24,sid103462484,103462484,244635,Ratio of Effective concentration to inhibit vaccinia virus plaque formation to that of half maximal cytotoxic concentration in human foreskin fibroblast (HFF) cells,,,Unspecified
+24,sid103462484,103462484,246355,Effective concentration required to inhibit cowpox virus plaque formation in human foreskin fibroblast (HFF) cells,EC50,11,Unspecified
+24,sid103462484,103462484,246367,Effective concentration required to inhibit vaccinia virus plaque formation in human foreskin fibroblast (HFF) cells,EC50,0.8,Active
+52,sid174505293,174505293,85704,In vitro antiviral activity (virus ratings (VR)) determined by comparing CPE development in drug-treated cells (T) and HSV-1 virus control cells,,,Unspecified
+52,sid174505293,174505293,155592,In vitro antiviral activity (virus ratings (VR)) determined by comparing CPE development in drug-treated cells (T) and Parainfluenza type 3 virus control cells.,,,Unspecified
+52,sid174505293,174505293,216381,In vitro antiviral activity (virus ratings (VR)) determined by comparing CPE development in drug-treated cells (T) and Vesicular stomatitis virus control cells,,,Unspecified
+52,sid174505293,174505293,217967,In vitro antiviral activity (virus ratings (VR)) determined by comparing CPE development in drug-treated cells (T) and Vaccinia virus control cells,,,Unspecified
+73,sid136944206,136944206,636695,Antiviral activity against Cowpox virus Brighton infected in HFF cells incubated for 3 days by plaque reduction assay,IC50,10,Active
+73,sid136944206,136944206,636695,Antiviral activity against Cowpox virus Brighton infected in HFF cells incubated for 3 days by plaque reduction assay,IC50,40,Unspecified
+73,sid136944206,136944206,636696,Antiviral activity against Vaccinia virus Copenhagen infected in HFF cells incubated for 3 days by plaque reduction assay,IC50,8,Active
+73,sid136944206,136944206,636696,Antiviral activity against Vaccinia virus Copenhagen infected in HFF cells incubated for 3 days by plaque reduction assay,IC50,30,Unspecified
+79,sid312349542,312349542,1183090,Antiviral activity against Vaccinia virus Lister ATCC VR-1549 infected in Vero 76 cells after 3 days by plaque reduction assays,EC50,100,Unspecified
+86,sid312354004,312354004,1186339,Antiviral activity against Vaccinia Virus infected in african green monkey Vero 76 cells assessed as reduction in plaque number after 3 days by plaque reduction assay,EC50,100,Unspecified
+76,sid160670735,160670735,63613,Tested for the antiviral activity against Vaccinia virus in human E6SM cells,,,Unspecified
+77,sid312353999,312353999,1186339,Antiviral activity against Vaccinia Virus infected in african green monkey Vero 76 cells assessed as reduction in plaque number after 3 days by plaque reduction assay,EC50,100,Unspecified
+72,sid134438645,134438645,611623,Antiviral activity against Vaccinia virus infected in HEL cells assessed as protection against virus-induced cytopathicity,EC50,171,Unspecified
+81,sid136934644,136934644,636695,Antiviral activity against Cowpox virus Brighton infected in HFF cells incubated for 3 days by plaque reduction assay,IC50,2.5,Active
+81,sid136934644,136934644,636695,Antiviral activity against Cowpox virus Brighton infected in HFF cells incubated for 3 days by plaque reduction assay,IC50,7,Active
+81,sid136934644,136934644,636696,Antiviral activity against Vaccinia virus Copenhagen infected in HFF cells incubated for 3 days by plaque reduction assay,IC50,1,Active
+81,sid136934644,136934644,636696,Antiviral activity against Vaccinia virus Copenhagen infected in HFF cells incubated for 3 days by plaque reduction assay,IC50,4.5,Active
+80,sid160704385,160704385,653276,Antiviral activity against Vaccinia virus infected in human lung fibroblast assessed as inhibition of virus-induced cytopathic effect at 0.32 to 100 uM,,,Unspecified
+90,sid404666754,404666754,1352184,Antiviral activity against Vaccinia virus Lister ATCC VR 1549 infected in African green monkey Vero 76 cells after 3 days by plaque reduction assay,EC50,100,Unspecified
+111,sid174494777,174494777,85704,In vitro antiviral activity (virus ratings (VR)) determined by comparing CPE development in drug-treated cells (T) and HSV-1 virus control cells,,,Unspecified
+111,sid174494777,174494777,155594,In vitro antiviral activity (virus ratings (VR)) determined by comparing CPE development in drug-treated cells (T) and Parainfluenza type 3 virus control cells.,,,Unspecified
+111,sid174494777,174494777,216381,In vitro antiviral activity (virus ratings (VR)) determined by comparing CPE development in drug-treated cells (T) and Vesicular stomatitis virus control cells,,,Unspecified
+111,sid174494777,174494777,217967,In vitro antiviral activity (virus ratings (VR)) determined by comparing CPE development in drug-treated cells (T) and Vaccinia virus control cells,,,Unspecified
+109,sid312349504,312349504,1183090,Antiviral activity against Vaccinia virus Lister ATCC VR-1549 infected in Vero 76 cells after 3 days by plaque reduction assays,EC50,100,Unspecified
+108,sid103481793,103481793,261842,Antiviral activity against Vaccinia virus Copenhagen replication in HFF cells,EC50,0.08,Active
+108,sid103481793,103481793,261844,Antiviral activity against Cowpox virus Brighton replication in HFF cells,EC50,0.06,Active
+108,sid103481793,103481793,373439,"Selectivity index, ratio of CC50 for HFF cells to EC50 for Cowpox virus Brighton",,,Unspecified
+108,sid103481793,103481793,373440,"Selectivity index, ratio of CC50 for HFF cells to EC50 for Vaccinia virus WR",,,Unspecified
+108,sid103481793,103481793,373441,Antiviral activity against Cowpox virus Brighton in HFF cells assessed as reduction of viral replication after 3 days,EC50,0.6,Active
+108,sid103481793,103481793,373442,Antiviral activity against Vaccinia virus WR in HFF cells assessed as reduction of viral replication after 3 days,EC50,1.1,Active
+108,sid103481793,103481793,373443,Antiviral activity against Vaccinia virus Copenhagen in HFF cells assessed as reduction of viral replication after 3 days,EC50,0.8,Active
+108,sid103481793,103481793,373444,"Selectivity index, ratio of CC50 for HFF cells to EC50 for Vaccinia virus Copenhagen",,,Unspecified
+108,sid103481793,103481793,373576,Antiviral activity against Vaccinia virus Copenhagen in HFF cells assessed as reduction plaque formation after 3 days,EC50,0.14,Active
+108,sid103481793,103481793,373577,Antiviral activity against Vaccinia virus WR in HFF cells assessed as reduction plaque formation after 3 days,EC50,0.13,Active
+108,sid103481793,103481793,373578,Antiviral activity against Cowpox virus Brighton in HFF cells assessed as reduction plaque formation after 3 days,EC50,0.24,Active
+108,sid103481793,103481793,373580,"Selectivity index, ratio CC50 for HFF cells to EC50 for Vaccinia virus Copenhagen",,,Unspecified
+108,sid103481793,103481793,373581,"Selectivity index, ratio CC50 for HFF cells to EC50 for Vaccinia virus WR",,,Unspecified
+108,sid103481793,103481793,373582,"Selectivity index, ratio CC50 for HFF cells to EC50 for Cowpox virus Brighton",,,Unspecified
+108,sid103481793,103481793,373584,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mortality at 3 mg/kg, po treated for 5 days after 1 day of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373585,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mortality at 1 mg/kg, po treated for 5 days after 1 day of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373586,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mortality at 0.3 mg/kg, po treated for 5 days after 1 day of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373590,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mean day of death at 1 mg/kg, po treated for 5 days after 1 day of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373591,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mean day of death at 0.3 mg/kg, po treated for 5 days after 1 day of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373594,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mortality at 3 mg/kg, po treated for 5 days after 3 days of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373595,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mortality at 1 mg/kg, po treated for 5 days after 3 days of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373596,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mortality at 0.3 mg/kg, po treated for 5 days after 3 days of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373598,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mean day of death at 3 mg/kg, po treated for 5 days after 3 days of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373599,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mean day of death at 1 mg/kg, po treated for 5 days after 3 days of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373600,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mean day of death at 0.3 mg/kg, po treated for 5 days after 3 days of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373603,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mortality at 3 mg/kg, po treated for 5 days after 6 days of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373604,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mortality at 1 mg/kg, po treated for 5 days after 6 days of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373605,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mortality at 0.3 mg/kg, po treated for 5 days after 6 days of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373608,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mean day of death at 3 mg/kg, po treated for 5 days after 6 days of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373735,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mean day of death at 1 mg/kg, po treated for 5 days after 6 days of viral inoculation",,,Unspecified
+108,sid103481793,103481793,373736,"Antiviral activity against Cowpox virus Brighton infected BALB/c mouse assessed as virus-induced mean day of death at 0.3 mg/kg, po treated for 5 days after 6 days of viral inoculation",,,Unspecified
+108,sid103481793,103481793,392504,Antiviral activity against Cowpox virus,IC50,0.6,Active
+108,sid103481793,103481793,596263,"Selectivity index, ratio of CC50 for human HFF cells to EC50 for Vaccinia virus Copenhagen",,,Unspecified
+108,sid103481793,103481793,596264,Antiviral activity against Vaccinia virus Copenhagen infected in human HFF cells after 3 days by plaque reduction assay,EC50,0.08,Active
+108,sid103481793,103481793,596265,"Selectivity index, ratio of CC50 for human HFF cells to EC50 for Cowpox virus (Brighton Red)",,,Unspecified
+108,sid103481793,103481793,596267,Antiviral activity against Cowpox virus (Brighton Red) infected in human HFF cells after 3 days by plaque reduction assay,EC50,0.2,Active
+108,sid103481793,103481793,1996817,Antiviral activity against Cowpox virus Brighton infected in Vero cells measured after 4 days by colorimetric assay,EC50,0.6,Active
+108,sid103481793,103481793,1996824,Antiviral activity against Vaccinia virus infected in human HFF cells,EC50,0.8,Active
+314,sid469812199,469812199,1750798,Antiviral activity against Vaccinia virus,,,Unspecified
+309,sid103732647,103732647,63613,Tested for the antiviral activity against Vaccinia virus in human E6SM cells,,,Unspecified
+322,sid103462683,103462683,244634,Ratio of Effective concentration to inhibit cowpox virus plaque formation to that of half maximal cytotoxic concentration in human foreskin fibroblast (HFF) cells,,,Unspecified
+322,sid103462683,103462683,244635,Ratio of Effective concentration to inhibit vaccinia virus plaque formation to that of half maximal cytotoxic concentration in human foreskin fibroblast (HFF) cells,,,Unspecified
+322,sid103462683,103462683,246355,Effective concentration required to inhibit cowpox virus plaque formation in human foreskin fibroblast (HFF) cells,EC50,29,Unspecified
+322,sid103462683,103462683,246367,Effective concentration required to inhibit vaccinia virus plaque formation in human foreskin fibroblast (HFF) cells,EC50,6.8,Active
+325,sid103392324,103392324,72410,Antiviral activity against vaccinia virus in HEL (human erythroleukemia) cells.,EC50,6.5,Active
+325,sid103392324,103392324,392536,Antiviral activity against Vaccinia virus,IC50,6.5e-06,Active
+325,sid103392324,103392324,1996822,Antiviral activity against Cowpox virus infected in Vero cells measured after 4 days by colorimetric assay,EC50,46.2,Unspecified
+310,sid381873167,381873167,1462038,Antiviral activity against Vaccinia virus Lederle infected in HEL cells assessed as inhibition of virus-induced cytopathic effect,EC50,100,Unspecified
+305,sid103344164,103344164,244634,Ratio of Effective concentration to inhibit cowpox virus plaque formation to that of half maximal cytotoxic concentration in human foreskin fibroblast (HFF) cells,,,Unspecified
+305,sid103344164,103344164,244635,Ratio of Effective concentration to inhibit vaccinia virus plaque formation to that of half maximal cytotoxic concentration in human foreskin fibroblast (HFF) cells,,,Unspecified
+305,sid103344164,103344164,246355,Effective concentration required to inhibit cowpox virus plaque formation in human foreskin fibroblast (HFF) cells,EC50,60,Unspecified
+305,sid103344164,103344164,246367,Effective concentration required to inhibit vaccinia virus plaque formation in human foreskin fibroblast (HFF) cells,EC50,14,Unspecified
+319,sid312353844,312353844,1186339,Antiviral activity against Vaccinia Virus infected in african green monkey Vero 76 cells assessed as reduction in plaque number after 3 days by plaque reduction assay,EC50,100,Unspecified
+331,sid103460023,103460023,246314,Concentration required to inhibit vaccinia virus induced cytopathogenicity in HEL cells by 50%,EC50,400,Unspecified
+338,sid134446575,134446575,623220,Antiviral activity against Vaccinia virus assessed as inhibition of viral replication,,,Unspecified
+363,sid312353991,312353991,1186339,Antiviral activity against Vaccinia Virus infected in african green monkey Vero 76 cells assessed as reduction in plaque number after 3 days by plaque reduction assay,EC50,100,Unspecified
+365,sid103392290,103392290,72410,Antiviral activity against vaccinia virus in HEL (human erythroleukemia) cells.,EC50,1200,Unspecified
+365,sid103392290,103392290,392536,Antiviral activity against Vaccinia virus,IC50,0.0012,Active
+362,sid312353849,312353849,1186339,Antiviral activity against Vaccinia Virus infected in african green monkey Vero 76 cells assessed as reduction in plaque number after 3 days by plaque reduction assay,EC50,100,Unspecified
+372,sid103460239,103460239,246314,Concentration required to inhibit vaccinia virus induced cytopathogenicity in HEL cells by 50%,EC50,16,Unspecified
+369,sid312354107,312354107,1186339,Antiviral activity against Vaccinia Virus infected in african green monkey Vero 76 cells assessed as reduction in plaque number after 3 days by plaque reduction assay,EC50,100,Unspecified
+368,sid103211222,103211222,217829,Concentration required to reduce cytopathogenicity of vaccinia virus by 50% in primary rabbit kidney (PRK) cells,,,Unspecified
+384,sid174523789,174523789,768202,Antiviral activity against Vaccinia virus infected in human HEL cells assessed as reduction of virus-induced cytopathogenicity,EC50,20,Unspecified
+413,sid103210702,103210702,217829,Concentration required to reduce cytopathogenicity of vaccinia virus by 50% in primary rabbit kidney (PRK) cells,,,Unspecified
+411,sid381848373,381848373,1462038,Antiviral activity against Vaccinia virus Lederle infected in HEL cells assessed as inhibition of virus-induced cytopathic effect,EC50,100,Unspecified
+418,sid312354099,312354099,1186339,Antiviral activity against Vaccinia Virus infected in african green monkey Vero 76 cells assessed as reduction in plaque number after 3 days by plaque reduction assay,EC50,31,Unspecified
+414,sid174518561,174518561,768202,Antiviral activity against Vaccinia virus infected in human HEL cells assessed as reduction of virus-induced cytopathogenicity,EC50,100,Unspecified
+421,sid103685427,103685427,419594,Antiviral activity against Vaccinia virus infected in human HEL cells assessed as reduction in virus-induced cytopathogenicity after 3 days,,,Unspecified
+422,sid312354115,312354115,1186339,Antiviral activity against Vaccinia Virus infected in african green monkey Vero 76 cells assessed as reduction in plaque number after 3 days by plaque reduction assay,EC50,100,Unspecified
+423,sid103226686,103226686,392504,Antiviral activity against Cowpox virus,IC50,3.2,Active
+423,sid103226686,103226686,625146,DRUGMATRIX: Lipoxygenase 15-LO enzyme inhibition (substrate: Linoleic acid),IC50,,Unspecified
+423,sid103226686,103226686,625146,DRUGMATRIX: Lipoxygenase 15-LO enzyme inhibition (substrate: Linoleic acid),Ki,,Unspecified
+423,sid103226686,103226686,642283,Antiviral activity against Vaccinia virus Lister Elstree infected in african green monkey Vero 76 cells assessed as reduction of virus-induced plaque formation after 3 days using crystal violet staining,EC50,1.5,Active
+423,sid103226686,103226686,664263,Antiviral activity against Vaccinia virus Elstree-Lister ATCC VR-1549 infected in african green monkey Vero-76 cells assessed as reduction in viral plaque after 3 days by crystal violet staining,EC50,1.5,Active
+423,sid103226686,103226686,1096461,Antiviral activity against Vaccinia virus infected African green monkey Vero76 cells assessed as reduction of virus-induced plaque reduction after 3 days by MTT assay,EC50,1.8,Active
+423,sid103226686,103226686,1115250,Antiviral activity against Vaccinia virus infected African green monkey Vero 76 cells assessed as reduction in plaque number treated after viral infection measured after 3 days by plaque reduction assay,EC50,1.8,Active
+423,sid103226686,103226686,1186339,Antiviral activity against Vaccinia Virus infected in african green monkey Vero 76 cells assessed as reduction in plaque number after 3 days by plaque reduction assay,EC50,2,Active
+423,sid103226686,103226686,1204082,Antiviral activity against Vaccinia virus infected in African green monkey Vero 76 cells after 3 days by plaque reduction assay,EC50,1.5,Active
+423,sid103226686,103226686,1246240,Antiviral activity against Human Vaccinia virus ATCC VR-1549 infected in African green monkey Vero 76 cells assessed as reduction of virus-plaque formation after 3 days by crystal violet staining,EC50,1.5,Active
+423,sid103226686,103226686,1261342,Antiviral activity against Vaccinia virus,EC50,2,Active
+423,sid103226686,103226686,1303381,Antiviral activity against Vaccinia virus Elstree infected in Vero 76 cells after 3 days by crystal violet staining based plaque reduction assay,EC50,,Inconclusive
+423,sid103226686,103226686,1503328,Antiviral activity against Vaccinia virus Lister ATCC VR 1549 infected in African green monkey Vero 76 cells assessed as protection against virus-induced cytopathic effect after 3 days by crystal violet staining-based plaque reduction assay,EC50,1.5,Active
+423,sid103226686,103226686,1996846,Antiviral activity against Vaccinia virus infected in African green monkey CV-1 cells assessed as reduction in virus-induced cytopathic effect incubated for 5 days by colorimetric analysis,EC50,1,Active
