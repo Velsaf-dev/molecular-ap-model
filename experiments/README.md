@@ -9,6 +9,7 @@
 | **003** | `exp_003_exact_analytical_formula` | Детерминированная формула ($CC_{50} / IC_{50}$) + 0.0 для неактивных | $R^2 = 1.00$ на известных парах | **< 100 (ожидание Топ-1)** | **Основной сабмит** | `experiments/exp_003_.../submission.csv` *(и `submission.csv`)* |
 | **004** | `exp_004_hybrid_robust_qsar` | Формула для известных + сглаженный QSAR ($\le 5.0$) для пропусков | Защита от скрытой активности | **< 100 (ожидание Топ-1)** | Резерв | `experiments/exp_004_.../submission.csv` |
 | **005** | `exp_005_pure_qsar_poxvirus_v3` | Чистый QSAR: фармакофоры оспы, Tweedie, взвешенный CatBoost | Spearman $\rho=0.593$, $R^2_{\text{log}}=0.35$ | **~1.10M – 1.21M (Топ-5)** | Академический | `experiments/exp_005_.../submission.csv` |
+| **006** | `exp_006_chemberta_embeddings_hybrid` | ChemBERTa-77M GPU Embeddings (384-d) + RDKit + CatBoost + LightGBM + XGBoost | Spearman $\rho=0.553$, Pearson $r=0.568$ | **~1.15M – 1.25M** | Deep Learning | `experiments/exp_006_.../submission.csv` |
 
 ---
 
@@ -28,7 +29,10 @@ experiments/
 ├── exp_004_hybrid_robust_qsar/
 │   ├── description.txt
 │   └── submission.csv
-└── exp_005_pure_qsar_poxvirus_v3/
+├── exp_005_pure_qsar_poxvirus_v3/
+│   ├── description.txt
+│   └── submission.csv
+└── exp_006_chemberta_embeddings_hybrid/
     ├── description.txt
     └── submission.csv
 ```
