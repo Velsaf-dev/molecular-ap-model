@@ -2,5 +2,8 @@
 python311/
 __pycache__/
 *.pyc
+*.pyo
 .ipynb_checkpoints/
 catboost_info/
+data/processed/*.npy
+data/mined/chembl_raw_activities.csv

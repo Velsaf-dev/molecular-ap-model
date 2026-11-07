@@ -1,0 +1,9 @@
+.git
+.venv
+python311
+__pycache__
+*.pyc
+*.pyo
+.DS_Store
+catboost_info
+data/processed/*.npy
