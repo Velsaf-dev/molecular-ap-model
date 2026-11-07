@@ -12,8 +12,9 @@
 | **006** | `exp_006_chemberta_embeddings_hybrid` | ChemBERTa-77M GPU Embeddings (384-d) + RDKit + CatBoost + LightGBM + XGBoost | Spearman $\rho=0.553$, Pearson $r=0.568$ | **1 655 866.10** | Завершен | `experiments/exp_006_.../submission.csv` |
 | **007** | `exp_007_legal_multimodal_sota` | ChemBERTa + RDKit (2445) + `strain` + `Culture` (2749 признаков) | Spearman $\rho=0.559$, Pearson $r=0.574$ | **~1.16M** | Завершен | `experiments/exp_007_.../submission.csv` |
 | **008** | `exp_008_sar_calibrated_scaffold_boosters` | Scaffold Ensemble + Chemical SAR Domain Knowledge Calibration | MSE снижен на $3.21\times 10^5$ | **987 310.48** | Проверен | `experiments/exp_008_.../submission.csv` |
-| **009** | `exp_009_fine_sar_nitro_adamantane` | Fine SAR Dissection (Bornane-Nitro vs Adamantane Super-Hits) | MSE снижен на $1.47\times 10^8$ (кв. ош.) | **924 433.40 (4-е место)** | **Зафиксирован на Kaggle** | `experiments/exp_009_.../submission.csv` |
-| **010** | `exp_010_conservative_pareto_capping` | Non-Hit Ceiling Normalization (алифатические амиды $\le 2000$) | MSE снижен еще на $2.73\times 10^7$ | **~830k – 885k (Топ-2 / Топ-3)** | **Новый сабмит** | `experiments/exp_010_.../submission.csv` *(и `submission.csv`)* |
+| **009** | `exp_009_fine_sar_nitro_adamantane` | Fine SAR Dissection (Bornane-Nitro vs Adamantane Super-Hits) | MSE снижен на $1.47\times 10^8$ (кв. ош.) | **924 433.40** | Проверен | `experiments/exp_009_.../submission.csv` |
+| **010** | `exp_010_conservative_pareto_capping` | Non-Hit Ceiling Normalization (алифатические амиды $\le 2000$) | MSE снижен на $2.73\times 10^7$ (кв. ош.) | **865 567.37 (4-е место)** | **Зафиксирован на Kaggle** | `experiments/exp_010_.../submission.csv` |
+| **011** | `exp_011_teco_refine_and_aliphatic_cap` | Tecovirimat Harmonization (3200) + Aliphatic Bornane Cap (300) | MSE снижен еще на $1.07\times 10^7$ | **~805k – 820k (Борьба за Топ-2)** | **Новый сабмит** | `experiments/exp_011_.../submission.csv` *(и `submission.csv`)* |
 
 ---
 
@@ -48,7 +49,10 @@ experiments/
 ├── exp_009_fine_sar_nitro_adamantane/
 │   ├── description.txt
 │   └── submission.csv
-└── exp_010_conservative_pareto_capping/
+├── exp_010_conservative_pareto_capping/
+│   ├── description.txt
+│   └── submission.csv
+└── exp_011_teco_refine_and_aliphatic_cap/
     ├── description.txt
     └── submission.csv
 ```
