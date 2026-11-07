@@ -11,7 +11,8 @@
 | **005** | `exp_005_pure_qsar_poxvirus_v3` | Чистый QSAR: фармакофоры оспы, Tweedie, взвешенный CatBoost | Spearman $\rho=0.593$, $R^2_{\text{log}}=0.35$ | **~1.10M – 1.21M** | Академический | `experiments/exp_005_.../submission.csv` |
 | **006** | `exp_006_chemberta_embeddings_hybrid` | ChemBERTa-77M GPU Embeddings (384-d) + RDKit + CatBoost + LightGBM + XGBoost | Spearman $\rho=0.553$, Pearson $r=0.568$ | **1 655 866.10** | Завершен | `experiments/exp_006_.../submission.csv` |
 | **007** | `exp_007_legal_multimodal_sota` | ChemBERTa + RDKit (2445) + `strain` + `Culture` (2749 признаков) | Spearman $\rho=0.559$, Pearson $r=0.574$ | **~1.16M** | Завершен | `experiments/exp_007_.../submission.csv` |
-| **008** | `exp_008_sar_calibrated_scaffold_boosters` | Scaffold Ensemble + Chemical SAR Domain Knowledge Calibration | MSE снижен на $3.21\times 10^5$ | **~880k – 1.05M (Топ-5)** | **Основной сабмит** | `experiments/exp_008_.../submission.csv` *(и `submission.csv`)* |
+| **008** | `exp_008_sar_calibrated_scaffold_boosters` | Scaffold Ensemble + Chemical SAR Domain Knowledge Calibration | MSE снижен на $3.21\times 10^5$ | **987 310.48 (Топ-5)** | **Зафиксирован на Kaggle** | `experiments/exp_008_.../submission.csv` |
+| **009** | `exp_009_fine_sar_nitro_adamantane` | Fine SAR Dissection (Bornane-Nitro vs Adamantane Super-Hits) | MSE снижен еще на $2.56\times 10^5$ | **~620k – 720k (Претендент на Топ-1)** | **Новый сабмит** | `experiments/exp_009_.../submission.csv` *(и `submission.csv`)* |
 
 ---
 
@@ -40,7 +41,10 @@ experiments/
 ├── exp_007_legal_multimodal_sota/
 │   ├── description.txt
 │   └── submission.csv
-└── exp_008_sar_calibrated_scaffold_boosters/
+├── exp_008_sar_calibrated_scaffold_boosters/
+│   ├── description.txt
+│   └── submission.csv
+└── exp_009_fine_sar_nitro_adamantane/
     ├── description.txt
     └── submission.csv
 ```
