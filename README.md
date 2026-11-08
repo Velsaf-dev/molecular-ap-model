@@ -11,6 +11,40 @@ $$\text{SI} = \frac{\text{CC}_{50}}{\text{IC}_{50}}$$
 
 ---
 
+## Презентация модели
+
+[Скачать презентацию (PDF)](docs/presentation.pdf)
+
+<p align="center">
+  <a href="docs/presentation.pdf">
+    <img src="docs/presentation/slide-01.png" alt="Презентация модели" width="85%" />
+  </a>
+</p>
+
+<details>
+<summary>Презентация модели (все слайды)</summary>
+<br>
+
+<p align="center">
+  <img src="docs/presentation/slide-01.png" width="48%" />
+  <img src="docs/presentation/slide-02.png" width="48%" />
+</p>
+<p align="center">
+  <img src="docs/presentation/slide-03.png" width="48%" />
+  <img src="docs/presentation/slide-04.png" width="48%" />
+</p>
+<p align="center">
+  <img src="docs/presentation/slide-05.png" width="48%" />
+  <img src="docs/presentation/slide-06.png" width="48%" />
+</p>
+<p align="center">
+  <img src="docs/presentation/slide-07.png" width="48%" />
+  <img src="docs/presentation/slide-08.png" width="48%" />
+</p>
+</details>
+
+---
+
 ## 1. История и эволюция решения
 
 1. **Исследовательский этап (эксперименты 001–015):**  
